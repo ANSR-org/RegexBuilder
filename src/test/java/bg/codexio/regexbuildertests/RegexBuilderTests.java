@@ -70,20 +70,20 @@ public class RegexBuilderTests {
                 .startGroup("singer")
                     .findEverythingUntil()
                 .endGroup()
-                .findSingleSymbol(" @")
+                .findSpecialPattern(" @")
                 .startGroup("venue")
                     .findEverythingUntil()
                 .endGroup()
-                .findSingleSymbol(" ")
+                .findSingleSymbol(' ')
                 .startGroup("price")
                     .findDigits()
                 .endGroup()
-                .findSingleSymbol(" ")
+                .findSingleSymbol(' ')
                 .startGroup("ticketCount")
                     .findDigits()
                 .endGroup();
 
-        final String expectedPattern = "(?<singer>.*?)\\ @(?<venue>.*?)\\ (?<price>\\d+)\\ (?<ticketCount>\\d+)";
+        final String expectedPattern = "(?<singer>.*?) @(?<venue>.*?)\\ (?<price>\\d+)\\ (?<ticketCount>\\d+)";
         final String actualPattern = regexBuilder.toString();
         Assertions.assertEquals(expectedPattern, actualPattern);
 
@@ -107,24 +107,24 @@ public class RegexBuilderTests {
                     .startCharacterClass()
                         .range('a', 'z')
                         .range('A', 'Z')
-                        .findSingleSymbol(" ")
+                        .findSingleSymbol(' ')
                     .endCharacterClass()
                     .areMany()
                 .endGroup()
-                .findSingleSymbol(" @")
+                .findSpecialPattern(" @")
                 .startGroup("venue")
                 .findEverythingUntil()
                 .endGroup()
-                .findSingleSymbol(" ")
+                .findSingleSymbol(' ')
                 .startGroup("price")
                 .findDigits()
                 .endGroup()
-                .findSingleSymbol(" ")
+                .findSingleSymbol(' ')
                 .startGroup("ticketCount")
                 .findDigits()
                 .endGroup();
 
-        final String expectedPattern = "(?<singer>[a-zA-Z\\ ]+)\\ @(?<venue>.*?)\\ (?<price>\\d+)\\ (?<ticketCount>\\d+)";
+        final String expectedPattern = "(?<singer>[a-zA-Z\\ ]+) @(?<venue>.*?)\\ (?<price>\\d+)\\ (?<ticketCount>\\d+)";
         final String actualPattern = regexBuilder.toString();
         Assertions.assertEquals(expectedPattern, actualPattern);
 
