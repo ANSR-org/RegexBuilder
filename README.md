@@ -1,5 +1,5 @@
 # RegexBuilder
-A simple abstraction over regular expressions using a builder pattern
+A simple abstraction over regular expressions using a builder pattern in Java
 
 You can build your RegEx pattern incrementally using the fluent interface. Keep in mind that it will not stop you of messing the pattern by using quantifiers or special symbols without any reason. 
 
@@ -15,7 +15,7 @@ You want to extract from the valid strings the four matches into named groups (s
 
 Here is your code:
 
-```
+```java
 final String target = "Lepa Brena @Sunny Beach 25 3500";
 Matcher matcher = RegexBuilder.create()
                 .startGroup("singer")
